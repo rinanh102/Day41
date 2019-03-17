@@ -12,6 +12,8 @@
 		07514854223D5F4800EA5BED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07514852223D5F4800EA5BED /* Main.storyboard */; };
 		07514856223D5F4B00EA5BED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07514855223D5F4B00EA5BED /* Assets.xcassets */; };
 		07514859223D5F4B00EA5BED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07514857223D5F4B00EA5BED /* LaunchScreen.storyboard */; };
+		07514863223D617900EA5BED /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07514862223D617900EA5BED /* words.txt */; };
+		07514865223D62A100EA5BED /* letters.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07514864223D62A100EA5BED /* letters.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		07514855223D5F4B00EA5BED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07514858223D5F4B00EA5BED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0751485A223D5F4B00EA5BED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07514862223D617900EA5BED /* words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words.txt; sourceTree = SOURCE_ROOT; };
+		07514864223D62A100EA5BED /* letters.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = letters.txt; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				07514855223D5F4B00EA5BED /* Assets.xcassets */,
 				07514857223D5F4B00EA5BED /* LaunchScreen.storyboard */,
 				0751485A223D5F4B00EA5BED /* Info.plist */,
+				07514862223D617900EA5BED /* words.txt */,
+				07514864223D62A100EA5BED /* letters.txt */,
 			);
 			path = Day41;
 			sourceTree = "<group>";
@@ -124,6 +130,8 @@
 			files = (
 				07514859223D5F4B00EA5BED /* LaunchScreen.storyboard in Resources */,
 				07514856223D5F4B00EA5BED /* Assets.xcassets in Resources */,
+				07514863223D617900EA5BED /* words.txt in Resources */,
+				07514865223D62A100EA5BED /* letters.txt in Resources */,
 				07514854223D5F4800EA5BED /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
