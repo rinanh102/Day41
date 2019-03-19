@@ -13,8 +13,7 @@ class ViewController: UIViewController {
     var allWords = [String]()
     var allLetters = [String]()
     var threeLetters = [String]()
-//    var fourLetters = [String]()
-//    var fiveLetters = [String]()
+
     var scoreLabel : UILabel!
     var answerLabel : UILabel!
     var wrongAnswerLabel : UILabel!
@@ -25,35 +24,24 @@ class ViewController: UIViewController {
     var usedLetters = [String]()
     var letterArray = [String]()
 
+    var score = 0
     var wrongAnswer = 0{
         didSet{
-            wrongAnswerLabel.text = "Wrong Answer: \(wrongAnswer)"
+            wrongAnswerLabel.text = "Wrong Answer: \(wrongAnswer)/7"
         }
     }
-    var score = 0
-//    {
-//        didSet{
-//            scoreLabel.text = "Score: \(score)"
-//        }
-//    }
-    //
     var answerWord = ""
     var solution : String!
+
     
     override func loadView() {
         
         view = UIView()
         view.backgroundColor = .white
         
-//        scoreLabel = UILabel()
-//        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
-//        scoreLabel.textAlignment = .right
-//        scoreLabel.text = "Score: 0"
-//        view.addSubview(scoreLabel)
-        
         wrongAnswerLabel = UILabel()
         wrongAnswerLabel.translatesAutoresizingMaskIntoConstraints = false
-        wrongAnswerLabel.text = "Wrong Answer: 0"
+        wrongAnswerLabel.text = "Wrong Answer: 0/7"
         view.addSubview(wrongAnswerLabel)
 
         
@@ -77,12 +65,12 @@ class ViewController: UIViewController {
             buttonsView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -30),
             buttonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            answerLabel.bottomAnchor.constraint(equalTo: buttonsView.topAnchor, constant: -100),
+            answerLabel.bottomAnchor.constraint(equalTo: buttonsView.topAnchor, constant: -150),
             answerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             answerLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6),
             
             wrongAnswerLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 100),
-            wrongAnswerLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 100)
+            wrongAnswerLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 100),
             
 
             ])
@@ -105,8 +93,6 @@ class ViewController: UIViewController {
                 
             }
         }
-        answerLabel.backgroundColor = .red
-//        wrongAnswerLabel.backgroundColor = .blue
       
     }
 
@@ -129,22 +115,14 @@ class ViewController: UIViewController {
                 letterButtons[i].setTitle(allLetters[i], for: .normal)
             }
         startGame()
-        // up to 3 letters
-//        for word in allWords{
-//            if word.count < 4 && word.count > 2 {
-//                threeLetters.append(word)
-//            }
-//        }
-//        threeLetters.shuffle()
-//        print(threeLetters[0])
     }
     
-    func startGame(action: UIAlertAction! = nil){
+   func startGame(action: UIAlertAction! = nil){
+        answerLabel.backgroundColor = UIColor.lightGray
         wrongAnswer = 0
         answerWord = ""
         startWord = ""
         usedLetters = []
-        print(usedLetters)
         for button in letterButtons{
             button.isHidden = false
         }
@@ -159,25 +137,35 @@ class ViewController: UIViewController {
         print(startWord)
     }
     
-    func checkAnswer(_ sender :UIButton){
+    func checkAnswer(_ sender : UIButton){
+        print("Star Check!")
         guard let buttonTitle = sender.titleLabel?.text else { return }
         usedLetters.append(buttonTitle)
         for letter in solution{
-            letterArray.append(String(letter))
+            letterArray.append(String(letter).uppercased())
         }
+//        updateAnswer()
+        print("Array: \(letterArray)")
         if letterArray.contains(buttonTitle) {
             score += 1
+            print("Right")
         } else {
             wrongAnswer += 1
+            print("Wrong")
         }
+        print("Wrong: \(wrongAnswer)")
+        updateAnswer()
     }
     
     func checkLoseGame(){
         if wrongAnswer == 7 {
-            let alert = UIAlertController(title: "You lose!", message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: "You lose!🙃", message: "Answer: \(solution.uppercased())", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "New Game", style: .default, handler: startGame))
             present(alert, animated: true)
+            answerLabel.backgroundColor = .red
+
         }
+
     }
     
     func checkWinGame(){
@@ -186,7 +174,10 @@ class ViewController: UIViewController {
             let alert = UIAlertController(title: "You Win!", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "New Game", style: .default, handler: startGame))
             present(alert, animated: true)
+            answerLabel.backgroundColor = .green
+
         }
+
     }
     
     func updateAnswer(){
@@ -205,8 +196,8 @@ class ViewController: UIViewController {
     }
 
     @objc func letterTapped(_ sender: UIButton ){
+        letterArray = []
         checkAnswer(sender)
-        updateAnswer()
         sender.isHidden = true
         checkLoseGame()
         checkWinGame()
